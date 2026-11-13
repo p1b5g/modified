@@ -1,0 +1,784 @@
+==============================================================================
+ DESIGN AND ANALYSIS OF ALGORITHMS (DAA) - ALL LAB QUESTIONS (LAB 01 - LAB 11)
+ BTech (CS-B and CE), 3rd Semester
+ Instructor: Dr. Ajaya Kumar Dash
+==============================================================================
+(Only the questions are given here, without answers. Figures that appear in
+the original question sheets are mentioned but not reproduced.)
+
+
+##############################################################################
+ LAB 01   (July 28, 2026)
+##############################################################################
+
+Q1. Put them in Order
+    Using implementation in C, place the given functions in a list by
+    increasing order of growth for sufficiently large values of n.
+
+        n log2(n)         12*sqrt(n)        1/n              n^(log2 n)
+        100n^2 + 6n       n^0.51            n^2 - 324        50*n^0.5
+        2n^3              3^n               2^32 * n         log2(n)
+
+Q2. Fair vs Biased coin
+    Using simulation in C, show that the probability of getting a HEAD by
+    tossing a fair coin is about 0.5. Extend your simulation to compare fair
+    vs biased coin-tossing experiments.
+    [Interesting Read] Check this article on arXiv titled "Random Coin
+    Tossing with unknown bias" for more insight.
+
+Q3. Performance analysis of bubble sort
+    Using C, implement two different versions of bubble sort simulation for
+    randomised data sequences as follows:
+      (i)  Bubble sort that terminates if the array is sorted before the
+           (n-1)th pass.
+      (ii) Bubble sort that always completes the (n-1)th pass.
+    Plot the number of comparisons in both cases to analyse their efficiency.
+
+Q4. Towers of Hanoi (ToH)
+    Simulate the solution to the ToH problem using C. Plot the total number
+    of moves required for solving the problem of n-discs. What can you
+    conclude about your algorithm from the plot obtained?
+
+Q5. Find the partition point
+    Consider an array A with n elements containing a run of 0's followed by
+    a run of 1's. Implement a method to find out the exact point of
+    transition between them.
+
+Q6. Element uniqueness
+    For given n random numbers, implement a method in C to check if there
+    are any duplicates. What can you conclude about your method for a
+    sufficiently large value of n?
+
+
+##############################################################################
+ LAB 02   (August 4, 2026)
+##############################################################################
+
+Q1. Dictionary Operations
+    Consider a dictionary (D) abstract data type that permits access to data
+    items by content (key). The following are the primary operations that the
+    dictionary supports:
+
+      - Search(D, k)  : Given a search key k, return a pointer to the
+                        elements in the dictionary D whose key value is k,
+                        if one exists.
+      - Insert(D, x)  : Given a data item x, add it to the dictionary D.
+      - Delete(D, x)  : Given a pointer x to a data item in the dictionary D,
+                        remove it from D.
+      - Max(D) or Min(D) : Retrieve the item with the largest (or smallest)
+                        key from D. These two operations help the dictionary
+                        to serve as a priority queue.
+      - Predecessor(D, x) or Successor(D, x) : Retrieve the item from D whose
+                        key is immediately before (or after) the item x in
+                        sorted order.
+
+    What are the asymptotic worst-case running times for all the seven
+    primary operations (search, insert, delete, maximum, minimum,
+    predecessor, and successor) when the said data structure is implemented
+    using:
+      - An unsorted array.
+      - A sorted array.
+      - A singly linked unsorted list.
+      - A singly linked sorted list.
+      - A doubly linked unsorted list.
+      - A doubly linked sorted list.
+
+    Write a C program to validate your claim by plotting the order of growth
+    of these functions.
+
+Q2. Merge sort vs. modified merge sort
+    Consider the following modification to merge sort: divide the input array
+    into thirds (rather than halves), recursively sort each third, and finally
+    combine the results using a three-way merge subroutine. What is the
+    worst-case running time of this modified merge sort?
+    Write a C program to validate your claim by plotting the order of growth
+    for both the merge sort (discussed in the class) and the modified merge
+    sort described above.
+
+Q3. Merging k sorted arrays
+    Suppose you are given k sorted arrays, each with n elements, and you want
+    to combine them into a single sorted array of kn elements.
+
+    (a) [Method 1] One approach is to use the merge subroutine repeatedly,
+        merging the first two arrays, then merging the result with the third
+        array, then with the fourth array, and so on until you merge in the
+        kth and final input array. Write a program to validate this idea.
+        Also, find the worst-case running time of this method.
+
+    (b) [Method 2] Consider the algorithm that first divides the k arrays
+        into k/2 pairs of arrays and uses the merge subroutine to combine each
+        pair, resulting in k/2 sorted length-2n arrays. The algorithm repeats
+        this step until there is only one length-kn sorted array. Write a
+        program to validate this idea. What is the running time of this
+        method as a function of n and k?
+
+
+##############################################################################
+ LAB 03   (August 11, 2026)
+##############################################################################
+
+Q1. Binary vs Ternary Search
+    In binary search, an n element list is divided into nearly two equal
+    halves, while in ternary search, it is divided into nearly three equal
+    intervals. Then the search will be in one of the intervals. Design and
+    implement a C program to search for an element x in a sorted list of size
+    n using binary and ternary search. Justify and validate that binary search
+    is better than ternary search via your implementation.
+
+Q2. Search the Defective Coin
+    Imagine you are working as the quality-control engineer for a company that
+    makes coins. The company needs to certify that all the coins must have
+    exactly identical weights. During your inspection, you have observed that
+    one of the workers is watching the mobile phone while giving final shape
+    to a coin. When you confront the worker suddenly, in reflex, he dropped
+    that one coin into a pile of other (n-1) perfectly identical weighted
+    coins. After your confrontation, the worker agreed that he was not
+    attentive and had been shaping the coin for more than the desired
+    duration. However, he could not be sure whether the weight of the coin was
+    less due to excessive shaping or remained perfect, but certain that the
+    weight of the coin must not be more than the required weight. It is your
+    job to find that one possible defective coin that is lighter than the
+    others or possibly none, if, fortunately, the worker has made the perfect
+    coin with exact required weight.
+    Being a Computer science graduate, your task is to determine which of the
+    coins is lighter (defective) or report that none is lighter. In order to
+    accomplish this task, you have been provided with a balance weighing
+    scale. Using the balance weighing scale and necessary implementation,
+    provide a divide and conquer algorithm to find the lighter (defective)
+    coin, if present or not, in log2(n) + c time, for some positive constant c.
+
+Q3. Max and Min using D&C Approach
+    Using the divide and conquer approach, develop an algorithm to find the
+    maximum and minimum elements in an array of size n so that the number of
+    comparisons will be bounded by 3n/2. Implement your algorithm in C to
+    validate the result.
+
+Q4. Matrix Multiplication using D&C Approach
+    Write a C program to multiply two square matrices of size n x n using
+    Strassen's method.
+
+Q5. Multiply special-pattern square matrices using D&C approach
+    Two n x n matrices are provided to you, where n = 2^k for some natural
+    number k. Each matrix has the recursive structure described as: when
+    divided into four equal-sized blocks, two diagonal blocks are identical,
+    and two off-diagonal blocks are identical, i.e. the structure of the
+    matrices would be:
+
+              | M1  M2 |
+        M  =  |        |
+              | M2  M1 |
+
+    Each block has a recursive structure that goes down to single integer
+    elements. Give a divide-and-conquer approach-based O(n^2) algorithm for
+    multiplying two such matrices and validate the complexity of your
+    algorithm.
+
+Q6. Use of loop invariants in sorting
+    Generally, loop invariants are used to prove an algorithm's correctness.
+    To validate the proof, one must show three things about a loop invariant:
+    initialisation, maintenance, and termination. Consider sorting on n
+    numbers stored in an array A[1..n] by first finding the smallest element
+    of A[1..n] and exchanging it with the element in A[1]. Then, find the
+    smallest element of A[2..n], and exchange it with A[2]. Then, find the
+    smallest element of A[3..n], and exchange it with A[3]. Continue in this
+    manner for the first (n-1) elements of A. Write a pseudocode for this
+    algorithm. What loop invariant does this algorithm maintain? Why does it
+    need to run for only the first (n-1) elements, rather than for all n
+    elements? Give the worst-case running time of the above sorting algorithm
+    in Theta-notation. Is the best-case running time any better? Finally,
+    implement your algorithm in C to validate your claim.
+
+
+##############################################################################
+ LAB 04   (August 18, 2026)
+##############################################################################
+
+Q1. Application of sorting-I
+    Assume that we are given n pairs of items as input, where the first item
+    is a number and the second item is one of three colours (red, blue, or
+    yellow). Further assume that the items are sorted by number. Give an O(n)
+    algorithm to sort the items by colour (all reds before all blues before
+    all yellows) such that the numbers for identical colours stay sorted. By
+    choosing the proper input representation, write a program in C to
+    validate your algorithm.
+
+Q2. Application of sorting-II
+    Given two sets S1 and S2 (each of size n), and a number x, describe an
+    O(n log n) algorithm for finding whether there exists a pair of elements,
+    one from S1 and one from S2, that add up to x. By choosing the proper
+    input representation, write a program in C to validate your algorithm.
+
+Q3. Application of sorting-III
+    Given a set S of n integers and an integer T, give an O(n^(k-1) * log n)
+    algorithm to test whether k of the integers in S add up to T. By choosing
+    the proper input representation, write a program in C to validate your
+    algorithm.
+
+Q4. Application of sorting-IV
+    A camera at the door tracks the entry time a_i and exit time b_i (assume
+    b_i > a_i) for each of the n persons p_i attending a party. Give an
+    O(n log n) algorithm that analyses this data to determine the time when
+    the most people were simultaneously present at the party. Assume that all
+    entry and exit times are distinct (no ties). By choosing the proper input
+    representation, write a program in C to validate your algorithm.
+
+Q5. Application of sorting-V
+    Given a list I of n intervals, specified as (x_i, y_i) pairs, return a
+    list where the overlapping intervals are merged. For
+    I = {(1,3), (2,6), (8,10), (7,18)} the output should be
+    {(1,6), (7,18)}. Your algorithm should run in worst-case O(n log n) time
+    complexity. By choosing a suitable input and output representation, write
+    a program in C to validate your algorithm.
+
+Q6. Application of sorting-VI
+    You are given a set S of n intervals on a line, with the ith interval
+    described by its left and right endpoints (l_i, r_i). Give an O(n log n)
+    algorithm to identify a point p on the line that is in the largest number
+    of intervals. As an example, for
+    S = {(10,40), (20,60), (50,90), (15,70)} no point exists in all four
+    intervals, but p = 50 is an example of a point in three intervals. You can
+    assume an endpoint counts as being in its interval. By choosing a suitable
+    input and output representation, write a program in C to validate your
+    algorithm.
+
+
+##############################################################################
+ LAB 05   (question sheet given as an image: "DAA LAB-5")
+##############################################################################
+
+Q1. Find the median of a list of N numbers without sorting the list. Do the
+    complexity analysis of your algorithm.
+
+Q2. Find the K'th smallest element in a given list of N numbers without
+    sorting the list. Do the complexity analysis of your algorithm.
+
+Q3. Implement Quick sort of N random elements stored in a file.
+
+Q4. Implement Heap Sort to sort N randomly generated elements stored in a
+    file. Do the complexity analysis of your algorithm.
+
+
+##############################################################################
+ LAB 06 - SET 1   (August 31, 2026)
+##############################################################################
+
+Q1. 1D array operations and their complexities
+    Given an array with n unsorted integer elements, what is the worst-case
+    complexity of the following problems in terms of n:
+      (i)    Finding the maximum element.
+      (ii)   Finding the first and second largest elements.
+      (iii)  Finding the mean.
+      (iv)   Finding the median.
+      (v)    Finding the standard deviation.
+      (vi)   Finding the mode.
+      (vii)  Removing all duplicates.
+      (viii) Reversing the elements of the array.
+      (ix)   Partitioning the array with respect to a given random pivot
+             element so that all elements less than the pivot appear after
+             all the elements greater than or equal to the pivot.
+    By choosing the proper input representation, write a program in C to
+    validate your procedures and derive the corresponding complexity
+    analysis.
+
+Q2. 2D square matrix operations and their complexities
+    Given square matrices with n rows and n columns, what is the worst-case
+    computational complexity of the following matrix algorithms in terms of n:
+      (i)   Matrix Addition.
+      (ii)  Matrix Multiplication.
+      (iii) Finding if the given matrix is a zero matrix.
+      (iv)  Finding if the given matrix is a symmetric matrix.
+      (v)   Computing the determinant of the given matrix.
+      (vi)  Transposing the matrix in situ (in place).
+      (vii) Finding the eigenvalue and eigenvector of the matrix.
+    By choosing the proper input representation, write a program in C to
+    validate your procedures and derive the corresponding complexity
+    analysis.
+
+Q3. Convolution operation on vectors of size n
+    The convolution of two vectors A and B is a new vector C such that
+
+        C[k] = SUM over j = 0 to m-1 of  A[j] * B[k - j]
+
+    Assuming the lengths of A and B are of length m and n, respectively, and
+    the indexing of the vectors starts from 0, find an O(n log n) divide and
+    conquer algorithm for this operation. Consider n >= m for your
+    implementation and analysis.
+    By choosing the proper input representation, write a program in C to
+    validate your algorithm.
+
+Q4. Sorting via reversal procedure
+    Suppose you are given a permutation p of the integers 1 to n, and seek to
+    sort them to be in increasing order [1, ..., n]. The only operation at
+    your disposal is reverse(p, i, j), which reverses the elements of a
+    subsequence p_i, ..., p_j in the permutation. For example, for the
+    permutation [1, 4, 3, 2, 5] one reversal (of the second through fourth
+    elements) suffices to sort.
+      - Mathematically, show that it is possible to sort any permutation
+        using O(n) reversals.
+      - Now suppose that the cost of reverse(p, i, j) is equal to its length,
+        the number of elements in the range, |j - i| + 1. Design an algorithm
+        that sorts p in O(n log2 n) cost. Analyse the running time and cost of
+        your algorithm and prove the correctness.
+    Write a program in C to validate your algorithm supporting your analysis.
+
+
+##############################################################################
+ LAB 06 - SET 2 : Dynamic Programming   (question sheet given as an image)
+##############################################################################
+
+Q1. Write a program to find the nth Fibonacci number using Dynamic
+    Programming.
+
+Q2. Implement the 0/1 Knapsack problem using Dynamic Programming. Given n
+    items with their weights and profits and a knapsack of capacity W,
+    determine the maximum profit that can be obtained. Analyze the time and
+    space complexity of your algorithm.
+
+Q3. Implement the Longest Common Subsequence (LCS) algorithm using Dynamic
+    Programming. Given two strings, find the length of their longest common
+    subsequence and display the subsequence. Analyze the complexity of the
+    algorithm.
+
+Q4. Write a program to implement Matrix Chain Multiplication using Dynamic
+    Programming. Given the dimensions of N-1 matrices in an array arr[],
+    determine the minimum number of scalar multiplications required to
+    multiply the complete matrix chain.
+
+        Input:             N = 4
+                           arr[] = {10, 30, 5, 60}
+        Output:            4500
+        Time Complexity:   O(N^3)
+
+
+##############################################################################
+ LAB 07   (September 8, 2026)
+ Algorithm application questions based on puzzles
+ (Q1 to Q6 level: medium and hard)
+##############################################################################
+
+Q1. [Invert the coin-triangle]
+    Consider an equilateral triangle formed by closely packed pennies or other
+    identical coins like the one shown in Figure 1 of the question sheet.
+    (The centers of the coins are assumed to be at the points of the
+    equilateral triangular lattice.) Design an algorithm to flip the triangle
+    upside down in the minimum number of moves if on each move you can slide
+    one coin at a time to its new position. Give a compact formula for the
+    number of minimum moves.
+    [Figure 1: Coin-triangle that needs to be inverted - see original sheet]
+    By choosing the proper input representation, write a program in C to
+    validate your procedures and derive the complexity analysis of your
+    algorithm.
+
+Q2. [Super egg testing experiment]
+    A firm has invented a super-strong egg. For publicity purposes, it wants
+    to determine the highest floor in a 100-storey building from which such an
+    egg can fall without breaking. The firm has given a tester two identical
+    eggs to experiment with. Of course, the same egg can be dropped multiple
+    times unless it breaks. What is the minimum number of droppings that is
+    guaranteed to determine the highest safe floor in all cases? Design a
+    dynamic programming generalized solution for E eggs and F floors.
+    By choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q3. Reve's puzzle
+    There are eight disks of different sizes and four pegs. Initially, all the
+    disks are on the first peg in order of size, the largest on the bottom and
+    the smallest on the top. The objective is to transfer all the disks to
+    another peg by a sequence of moves. Only one disk can be moved at a time,
+    and it is forbidden to place a larger disk on top of a smaller one. Devise
+    an algorithm that solves the puzzle in 33 moves. Generalize your algorithm
+    for an n-disk problem.
+    By choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q4. [Security switches]
+    There is a row of n security switches protecting a military installation
+    entrance. The switches can be manipulated as follows:
+      (i)   The rightmost switch may be turned on or off at will.
+      (ii)  Any other switch may be turned on or off only if the switch to its
+            immediate right is on and all the other switches to its right, if
+            any, are off.
+      (iii) Only one switch may be toggled at a time.
+    Devise an algorithm to turn off all the switches, which are initially all
+    on, in the minimum number of moves. (Toggling one switch is considered one
+    move.)
+    By choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q5. [Hitting a moving target]
+    A computer game has a shooter and a moving target. The shooter can hit any
+    of n > 1 hiding spots located along a straight line in which the target
+    can hide. The shooter can never see the target; all he knows is that the
+    target moves to an adjacent hiding spot between every two consecutive
+    shots. Design an algorithm that guarantees hitting the target or prove
+    that no such algorithm exists.
+    If any such algorithm exists, by choosing the proper input representation,
+    write a program in C to validate your algorithm and derive the complexity
+    analysis of your algorithm.
+
+Q6. [The best time to be alive]
+    An editor of "The History of the World Science" wants to find out the time
+    when the largest number of prominent scientists were alive. The prominent
+    scientists are, by definition, the people mentioned in the book with the
+    dates of their birth and death. (No living scientists are included in the
+    book.) Devise an algorithm for this task if it has the book's index as its
+    input. The entries in the index are sorted alphabetically and give the
+    persons' birth and death years. If a person A died the same year person B
+    was born, assume that the former event happened before the latter one.
+    By choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q7. [Matrix Chain Multiplication (MCM) problem]
+    Consider the matrix chain multiplication problem. Write a program in C to
+    implement the dynamic programming solution of the MCM problem in order to
+    find the minimum number of scalar multiplications involved and the
+    corresponding ordering to obtain the final result.
+
+
+##############################################################################
+ LAB 08   (September 29, 2026)
+ Questions based on Dynamic Programming design paradigm
+ (Difficulty level: medium and hard)
+##############################################################################
+
+Q1. [Minimum Coin Change]
+    Given an integer array of coin denominations C = {c1, c2, ..., cn}
+    representing coins of different values, and an integer target amount V,
+    find the minimum number of coins needed to make up that amount. You may
+    assume an infinite supply of each coin denomination. If that amount of
+    money cannot be made up by any combination of the coins, return -1.
+    By choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q2. [Coin Change: Total number of ways]
+    Given an array of distinct positive integers representing coin
+    denominations C = {c1, c2, ..., cn} and a target amount V, find the total
+    number of distinct combinations of coins that sum up to V. You may assume
+    an infinite supply of each coin denomination. The order of coins does not
+    matter (e.g., 1 + 2 and 2 + 1 are considered the same combination). By
+    choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q3. [Longest Common Subsequence (LCS)]
+    Given two sequences X = <x1, x2, ..., xm> and Y = <y1, y2, ..., yn>,
+    compute the length of their longest common subsequence and reconstruct
+    the actual subsequence string. By choosing the proper input
+    representation, write a program in C to validate your algorithm and
+    derive the complexity analysis of your algorithm.
+
+Q4. [Longest Increasing Subsequence]
+    Given an integer array A = [a0, a1, ..., a(n-1)], find the length of the
+    longest subsequence such that all elements of the subsequence are strictly
+    increasing. By choosing the proper input representation, write a program
+    in C to validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q5. [Maximum Sum Increasing Subsequence]
+    Given an array of n positive integers A = [a0, a1, ..., a(n-1)], find the
+    maximum possible sum of a strictly increasing subsequence. By choosing the
+    proper input representation, write a program in C to validate your
+    algorithm and derive the complexity analysis of your algorithm.
+
+Q6. [Edit Distance with Traceback Information]
+    Given two strings A of length m and B of length n, compute the minimum
+    number of operations (insertions, deletions, or substitutions) required to
+    transform A into B, and print the traceback result. By choosing the proper
+    input representation, write a program in C to validate your algorithm and
+    derive the complexity analysis of your algorithm.
+
+Q7. [Rod Cutting with Reconstruction]
+    Given a rod of length n inches and an array of prices P = [p1, p2, ..., pn],
+    where pi denotes the market price of a rod piece of length i inches,
+    determine:
+      (i)  The maximum revenue obtainable by cutting up the rod and selling
+           the pieces.
+      (ii) The exact lengths of the pieces that constitute the optimal
+           decomposition (reconstruction).
+    Cuts are integral and can be made in any combination (including leaving
+    the rod uncut), and the sum of the piece lengths must equal n. By choosing
+    the proper input representation, write a program in C to validate your
+    algorithm and derive the complexity analysis of your algorithm.
+
+Q8. [Optimal Binary Search Trees (OBST)]
+    Given a set of n distinct sorted keys K = <k1, k2, ..., kn> with search
+    probabilities p1, p2, ..., pn, and n + 1 dummy keys d0, d1, ..., dn
+    representing searches not in K with probabilities q0, q1, ..., qn, find
+    the minimum expected search cost of a binary search tree. By choosing the
+    proper input representation, write a program in C to validate your
+    procedures and derive the complexity analysis of your algorithm.
+
+Q9. [Collatz Conjecture] (Open Unsolved Problem)
+    The Collatz Conjecture (also known as the 3n+1 problem or Ulam
+    conjecture) defines a recurrence relation for any strictly positive
+    integer n:
+
+              | n / 2        if n is even
+        T(n) =|
+              | 3n + 1       if n is odd
+
+    The sequence repeatedly applies this function until n = 1. Although
+    unproven and still an open problem, it is conjectured that the sequence
+    reaches 1 for all positive integers. Write a modular C program to analyse
+    the trajectory of a user-provided starting value n >= 1 and across an
+    interval [a, b].
+    [Figure 1: Collatz conjecture paths for 5000 random starting points below
+    10^6 (Ref: wiki) - see original sheet]
+
+    Objective to give problem 9 as an assignment: To implement iterative
+    control structures, functional decomposition, dynamic memory
+    allocation/pointers, and integer overflow handling in C by simulating and
+    analysing arithmetic trajectories defined by the Collatz Conjecture. Most
+    importantly, to experience a so simple yet profound problem which is still
+    open!! The simplicity of this problem is deceptive. The reason it remains
+    open may lie in foundational issues in number theory, dynamical systems,
+    and computability.
+
+
+##############################################################################
+ LAB 09   (October 6, 2026)
+ Questions based on the greedy design paradigm
+ (Difficulty level: medium and hard)
+##############################################################################
+
+Q1. [Fractional Knapsack with Deterioration Rate]
+    You have n items with base values v_i, weights w_i, and decay rates
+    lambda_i > 0. If an item is consumed at time t, its effective value
+    density decays to (v_i / w_i) - lambda_i * t. Knapsack capacity is W.
+    Determine the optimal scheduling order and fractional choices to maximise
+    total value. By choosing the proper input representation, write a program
+    in C to validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q2. [Huffman Coding]
+    Given symbol frequencies, construct a prefix-free binary code of minimum
+    expected length, and output the canonical Huffman codebook (where codes
+    are ordered lexicographically by length). By choosing the proper input
+    representation, write a program in C to validate your algorithm and
+    derive the complexity analysis of your algorithm.
+
+Q3. [Minimum Initial Fuel (Reverse Greedy)]
+    A vehicle needs to reach the target D starting with fuel F. Along the way
+    are stations (d_i, f_i) (distance from origin and refuel amount). What is
+    the minimum number of refuelling stops required to reach the target? By
+    choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q4. [Minimum Cost to Connect Sticks]
+    You have sticks of lengths L1, L2, ..., Ln. Connecting two sticks of
+    lengths x and y costs x + y, resulting in a single stick of length x + y.
+    Find the minimum total cost to connect all sticks into one. By choosing
+    the proper input representation, write a program in C to validate your
+    algorithm and derive the complexity analysis of your algorithm.
+
+Q5. [Candy Distribution Problem (Bi-directional Slope Greedy)]
+    n children stand in a line, each assigned a rating. Each child must get at
+    least one candy. Children with a higher rating than their immediate
+    neighbours must get more candies than their neighbours. Find the minimum
+    total number of candies needed. By choosing the proper input
+    representation, write a program in C to validate your algorithm and
+    derive the complexity analysis of your algorithm.
+
+Q6. [Reorganise String with K-Distance Apart]
+    Given a string S and an integer K, rearrange S such that the same
+    characters are at least distance K apart. If impossible, return an empty
+    string. By choosing the proper input representation, write a program in C
+    to validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q7. [Minimise Deviation in Array (Two-Way Greedy with Max-Heap)]
+    Given an array of positive integers, you can perform two operations:
+    multiply any odd element by 2, or divide any even element by 2. The
+    deviation is (max(A) - min(A)). Minimise the deviation after any number of
+    operations. By choosing the proper input representation, write a program
+    in C to validate your procedures and derive the complexity analysis of
+    your algorithm.
+
+Q8. [Minimum Number of Meeting Rooms]
+    Given an array of meeting time intervals consisting of start and end times
+    [s1, e1], [s2, e2], ..., find the minimum number of conference rooms
+    required. By choosing the proper input representation, write a program in
+    C to validate your procedures and derive the complexity analysis of your
+    algorithm.
+
+Q9. [Hu-Tucker Greedy Simulation]*
+    Given an ordered sequence of weights w1, w2, ..., wn, construct an optimal
+    alphabetic binary search tree or merge pattern that maintains the strict
+    in-order sequence of indices while minimizing SUM of (w_i * depth(i)). By
+    choosing the proper input representation, write a program in C to validate
+    your algorithm and derive the complexity analysis of your algorithm.
+
+Q10. [Greedy Superstring Conjecture] (Open Unsolved Problem)
+    Given a set of n strings S = {s1, s2, ..., sn}, find the shortest single
+    string that contains every s_i as a substring. You are advised to explore
+    more on this problem to develop an insight.
+
+    Background and current status of the conjecture:
+    The conjecture formulated nearly four decades ago hypothesised that the
+    classic greedy algorithm (repeatedly merging the pair with the maximum
+    overlap) always yields a superstring no more than twice the length of the
+    optimal solution (2-approximation).
+    A September 2026 paper titled "Disproving the Greedy Superstring
+    Conjecture" published on ArXiV demonstrated that the approximation ratio
+    for instances where input strings have an even length k >= 10 is at least
+    (9k+2)/(4k+4), establishing a limit of 9/4 (2.25) as k -> infinity. This
+    conclusively disproves the long-standing 2-approximation claim. The
+    announcement has generated significant excitement among computer science
+    theorists on platforms like X (formerly Twitter), especially because the
+    author noted that the complex counterexample was found with the assistance
+    of AI. However, the claim of disproof has not been officially validated
+    yet.
+
+    (* Please note that we will discuss the approximation algorithm towards
+    the end of this course.)
+
+
+##############################################################################
+ LAB 10   (October 13, 2026)
+ Questions based on graphs and their representations, disjoint set data
+ structure / Union-Find data structure / Disjoint Set Union (DSU), and
+ connected components of a graph (Difficulty level: medium and hard)
+##############################################################################
+
+Q1. [Online Graph-Bipartiteness Testing]
+    A graph is bipartite if and only if it contains no odd-length cycles.
+    Given an undirected graph with V vertices, edges arrive online one by one.
+    Maintain whether the graph remains bipartite. If adding an edge (u, v)
+    does not introduce an odd cycle, add it; otherwise, report that it
+    violates bipartiteness and skip it. By choosing the proper input
+    representation, write a program in C to validate your algorithm and
+    derive the complexity analysis of your algorithm.
+
+Q2. [Dynamic Connected Components in a Grid]
+    Given an R x C grid initially completely filled with water, land cells are
+    added one by one at positions (r1, c1), (r2, c2), ..., (rk, ck). After
+    each operation, output the current number of 4-directionally connected
+    land components (islands). By choosing the proper input representation,
+    write a program in C to validate your algorithm and derive the complexity
+    analysis of your algorithm.
+    [Hint: This is the Dynamic Connected Components in a Grid (commonly known
+    as Number of Islands II), which can be solved using a Disjoint Set Union
+    (DSU / Union-Find) data structure with coordinate flattening.]
+
+Q3. [Maximum Weight Component with Size Constraints]
+    Given a graph where each vertex v has weight w_v, edges are added
+    sequentially with weights. At any point, compute the maximum total vertex
+    weight of any connected component whose size does not exceed a threshold
+    K. By choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+Q4. [Reverse Time-Step DSU Application]
+    Given a vertex-weighted undirected graph, vertices are sequentially
+    deleted one by one in an order P = [p1, p2, ..., pV]. After each vertex
+    deletion, compute the maximum sum of vertex values among all remaining
+    connected components. Note that deleting a vertex in a graph means
+    removing that specific vertex and all edges connected (incident) to it
+    from the graph structure. By choosing the proper input representation,
+    write a program in C to validate your algorithm and derive the complexity
+    analysis of your algorithm.
+
+Q5. [Lexicographically Smallest Connected Component Permutation]
+    Given a permutation A of numbers 1..n, and a list of allowable pairwise
+    swaps (u, v) forming edges in an undirected graph, find the
+    lexicographically smallest permutation achievable through any number of
+    valid swaps. By choosing the proper input representation, write a program
+    in C to validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+
+##############################################################################
+ LAB 11   (October 27, 2026)
+ Questions based on the applications of Breadth-First-Search (BFS) algorithm
+##############################################################################
+
+Q1. [Shortest Path on Parity-Constrained Graphs via 0-1 BFS]
+    You are given a directed graph G = (V, E), a designated source vertex
+    S in V, and an extra penalty cost C >= 0. Every directed edge (u, v) in E
+    has a weight w(u, v) in {0, 1}.
+
+    For any path P from S to a vertex v:
+      1. Let W(P) denote the sum of all edge weights along P.
+      2. Let k1(P) denote the total count of weight-1 edges traversed in P.
+      3. The effective cost of path P is defined as:
+
+                           | 0,   if k1(P) is even
+            Cost(P) = W(P) +|
+                           | C,   if k1(P) is odd
+
+    Objective: For every vertex v in V, compute the minimum possible Cost(P)
+    among all valid paths from S to v. If a node v cannot be reached from S,
+    report that it is unreachable. By choosing the proper input
+    representation, write a program in C to validate your algorithm and
+    derive the complexity analysis of your algorithm.
+
+Q2. [Multi-Source BFS for Radius-Constrained Voronoi Cell Partitioning]
+    You are given:
+      - An unweighted, undirected graph G = (V, E).
+      - A set of K designated hub vertices H = {h1, h2, ..., hK}, a subset of
+        V, indexed from 1 to K.
+      - An integer radius threshold R >= 0.
+
+    Let dist(u, v) denote the shortest path distance (minimum number of edges)
+    between vertices u and v in G.
+    For every vertex v in V, assign an ownership label owner[v] in
+    {1, 2, ..., K} U {-1} according to the following rules:
+      1. Distance Metric: Find the distance from v to each service hub:
+         d_i = dist(v, h_i) for all i in {1, ..., K}. Let d_min(v) be the
+         minimum of d_i over 1 <= i <= K.
+      2. Reachability Threshold (R): If d_min(v) > R, vertex v lies outside
+         the service coverage area. Set owner[v] = -1.
+      3. Closest Hub Assignment: If d_min(v) <= R, assign v to the hub h_i
+         that minimizes d_i.
+      4. Deterministic Tie-Breaking: If multiple hubs achieve the exact same
+         minimum distance d_min(v), choose the hub with the smallest
+         numerical index i.
+
+    Objective: Output the array owner[1..|V|] containing the assigned hub
+    index (or -1 if unassigned) and the corresponding shortest distance to
+    that hub for every vertex. By choosing the proper input representation,
+    write a program in C to validate your algorithm and derive the complexity
+    analysis of your algorithm.
+
+Q3. [Bidirectional BFS for Shortest Transformation Sequence in a Word Graph]
+    You are given:
+      - A dictionary D containing N unique words, where every word has the
+        exact same length L.
+      - A starting word A and a target word B, both of length L.
+
+    A valid mutation step consists of changing exactly one character of a word
+    such that the resulting word exists in dictionary D. A transformation
+    sequence from A to B is an ordered sequence of words:
+
+            W0, W1, W2, ..., Wk
+
+    such that:
+      1. W0 = A and Wk = B.
+      2. Every intermediate word Wi is in D for all 1 <= i <= k. (Note:
+         whether A must initially be in D is typically specified by the input
+         constraints, but B must always be in D.)
+      3. For every adjacent pair (W(i-1), Wi), the two words differ by exactly
+         one character (i.e., their Hamming distance is 1).
+
+    Objective: Compute the minimum number of mutations k required to transform
+    A into B. If A cannot be transformed into B through valid intermediate
+    words in D, return -1 (or report that no valid path exists). Keep in mind
+    to consider the following constraints for this problem during
+    implementation:
+      - N <= 10^5 (number of dictionary words)
+      - L <= 10 (length of each word)
+      - All words consist solely of lowercase English letters ('a' to 'z').
+
+    By choosing the proper input representation, write a program in C to
+    validate your algorithm and derive the complexity analysis of your
+    algorithm.
+
+==============================================================================
+ END OF QUESTIONS
+==============================================================================
